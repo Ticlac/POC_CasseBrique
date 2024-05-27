@@ -2,6 +2,12 @@
 [Tt]humbs.db
 *.DS_Store
 
+#Output Linux Installer
+Installers/Linux/tmp_deb/
+Installers/Linux/tmp_run/
+*.run
+*.deb
+
 #Visual Studio files
 *.pidb
 *.userprefs
@@ -22,3 +28,19 @@
 *.bak
 *.[Cc]ache
 *.ilk
+*.log
+*.lib
+*.sbr
+*.sdf
+*.csproj.csdat
+ipch/
+obj/
+[Bb]in
+[Dd]ebug*/
+[Rr]elease*/
+Ankh.NoLoad
+.vs/
+project.lock.json
+/MonoGame.Framework/MonoGame.Framework.Net.WindowsUniversal.project.lock.json
+/MonoGame.Framework/MonoGame.Framework.WindowsUniversal.project.lock.json
+artifacts/
