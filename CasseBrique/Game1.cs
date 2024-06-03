@@ -1,4 +1,5 @@
-﻿using CasseBrique.Services;
+﻿using CasseBrique.Scenes;
+using CasseBrique.Services;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -12,9 +13,7 @@ namespace CasseBrique
         private SpriteBatch _spriteBatch;
         private AssetService _assetService;
         private ScreenService _screeService;
-
-
-        private Ball _ball;
+        private ScenesManager _SceneManager;
 
         public Game1()
         {
@@ -31,6 +30,11 @@ namespace CasseBrique
             ServiceLocator.Register<GraphicsDeviceManager>(_graphics);
             _assetService = new AssetService();
             _screeService = new ScreenService(1920, 1080);
+            _SceneManager = new ScenesManager();
+
+            //TODO : Key = Type + instantiation au chargement de la nouvelle scene 
+            _SceneManager.RegisterScene("Game", new SceneGame());
+
 
 
             base.Initialize();
@@ -43,18 +47,18 @@ namespace CasseBrique
 
             _assetService.Load<Texture2D>("Ball");
 
-            _ball = new Ball();
+            // Load de la premiere scene apres avoir charger toutes les textures.
+            _SceneManager.LoadScene("Game");
         }
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                _ball.shoot(Vector2.One, 200);
 
             // TODO: Add your update logic here
 
             float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            _ball.Update(dt);
+
+            _SceneManager.Update(dt);
 
             base.Update(gameTime);
         }
@@ -67,7 +71,7 @@ namespace CasseBrique
 
             _spriteBatch.Begin();
 
-            _ball.Draw(_spriteBatch);
+            _SceneManager.Draw(_spriteBatch);
 
             _spriteBatch.End();
 

@@ -19,7 +19,7 @@ namespace CasseBrique
             this.color = Color.White;
         }
 
-        public void shoot(Vector2 direction, float speed)
+        public void Shoot(Vector2 direction, float speed)
         {
             velocity = direction * speed;
         }
