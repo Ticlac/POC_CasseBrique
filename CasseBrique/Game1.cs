@@ -26,7 +26,9 @@ namespace CasseBrique
             // TODO: Add your initialization logic here
 
             ServiceLocator.Register<ContentManager>(Content);
+            ServiceLocator.Register<GraphicsDeviceManager>(_graphics);
             new AssetService();
+            new ScreenService(1920, 1080);
 
 
             base.Initialize();
@@ -39,7 +41,7 @@ namespace CasseBrique
 
             ServiceLocator.Get<AssetService>().Load<Texture2D>("Ball");
 
-            _ball = new Ball(Vector2.Zero);
+            _ball = new Ball();
         }
 
         protected override void Update(GameTime gameTime)
