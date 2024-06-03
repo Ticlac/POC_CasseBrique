@@ -34,6 +34,7 @@ namespace CasseBrique
 
             //TODO : Key = Type + instantiation au chargement de la nouvelle scene 
             _SceneManager.RegisterScene("Game", new SceneGame());
+            _SceneManager.RegisterScene("Menu", new SceneMenu());
 
 
 

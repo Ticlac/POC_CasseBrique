@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using CasseBrique.Scenes.Interfaces;
+using CasseBrique.Services;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -22,6 +24,9 @@ namespace CasseBrique.Scenes
         public override void Update(float dt)
         {
             Debug.WriteLine("Update SceneGame");
+
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+                ServiceLocator.Get<IScenesManager>().LoadScene("Menu");
 
             if (Keyboard.GetState().IsKeyDown(Keys.Space))
                 ball.Shoot(Vector2.One, 200f);
