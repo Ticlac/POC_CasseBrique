@@ -10,6 +10,8 @@ namespace CasseBrique
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+        private AssetService _assetService;
+        private ScreenService _screeService;
 
 
         private Ball _ball;
@@ -27,8 +29,8 @@ namespace CasseBrique
 
             ServiceLocator.Register<ContentManager>(Content);
             ServiceLocator.Register<GraphicsDeviceManager>(_graphics);
-            new AssetService();
-            new ScreenService(1920, 1080);
+            _assetService = new AssetService();
+            _screeService = new ScreenService(1920, 1080);
 
 
             base.Initialize();
@@ -39,7 +41,7 @@ namespace CasseBrique
             // TODO: use this.Content to load your game content here
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            ServiceLocator.Get<AssetService>().Load<Texture2D>("Ball");
+            _assetService.Load<Texture2D>("Ball");
 
             _ball = new Ball();
         }

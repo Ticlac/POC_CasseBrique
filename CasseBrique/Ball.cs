@@ -1,4 +1,5 @@
 ﻿using CasseBrique.Services;
+using CasseBrique.Services.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -13,7 +14,7 @@ namespace CasseBrique
 
         public Ball()
         {
-            this.texture = ServiceLocator.Get<AssetService>().Get<Texture2D>("Ball");
+            this.texture = ServiceLocator.Get<IAssetService>().Get<Texture2D>("Ball");
             this.position = ServiceLocator.Get<ScreenService>().center;
             this.color = Color.White;
         }
