@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using CasseBrique.Services;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace CasseBrique
@@ -10,9 +11,9 @@ namespace CasseBrique
         private Vector2 velocity;
         private Color color;
 
-        public Ball(Texture2D texture, Vector2 position)
+        public Ball(Vector2 position)
         {
-            this.texture = texture;
+            this.texture = ServiceLocator.Get<AssetService>().Get<Texture2D>("Ball");
             this.position = position;
             this.color = Color.White;
         }

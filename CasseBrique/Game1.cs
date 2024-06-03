@@ -1,4 +1,6 @@
-﻿using Microsoft.Xna.Framework;
+﻿using CasseBrique.Services;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -23,16 +25,21 @@ namespace CasseBrique
         {
             // TODO: Add your initialization logic here
 
+            ServiceLocator.Register<ContentManager>(Content);
+            new AssetService();
+
+
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
+            // TODO: use this.Content to load your game content here
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            _ball = new Ball(Content.Load<Texture2D>("Ball"), Vector2.Zero);
+            ServiceLocator.Get<AssetService>().Load<Texture2D>("Ball");
 
-            // TODO: use this.Content to load your game content here
+            _ball = new Ball(Vector2.Zero);
         }
 
         protected override void Update(GameTime gameTime)
