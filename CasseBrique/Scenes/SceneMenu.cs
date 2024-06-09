@@ -12,13 +12,13 @@ namespace CasseBrique.Scenes
 {
     public class SceneMenu : Scene
     {
-        public override void Update(float dt)
-        {
-            Debug.WriteLine("Update Scene Menu");
-            if (Keyboard.GetState().IsKeyDown(Keys.Enter))
-                ServiceLocator.Get<IScenesManager>().LoadScene<SceneGame>();
+        //public override void Update(float dt)
+        //{
+        //    Debug.WriteLine("Update Scene Menu");
+        //    if (Keyboard.GetState().IsKeyDown(Keys.Enter))
+        //        ServiceLocator.Get<IScenesManager>().LoadScene<SceneGame>();
 
-            base.Update(dt);
-        }
+        //    base.Update(dt);
+        //}
     }
 }

@@ -1,5 +1,7 @@
-﻿using CasseBrique.Scenes.Interfaces;
+﻿using CasseBrique.GameObjects;
+using CasseBrique.Scenes.Interfaces;
 using CasseBrique.Services;
+using CasseBrique.Services.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -14,31 +16,9 @@ namespace CasseBrique.Scenes
 {
     public class SceneGame : Scene
     {
-        private Ball ball;
-
         public override void Load()
         {
-            this.ball = new Ball();
-            base.Load();
-        }
-        public override void Update(float dt)
-        {
-            Debug.WriteLine("Update SceneGame");
-
-            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
-                ServiceLocator.Get<IScenesManager>().LoadScene<SceneMenu>();
-
-            if (Keyboard.GetState().IsKeyDown(Keys.Space))
-                ball.Shoot(Vector2.One, 200f);
-
-
-            ball.Update(dt);
-            base.Update(dt);
-        }
-        public override void Draw(SpriteBatch sb)
-        {
-            ball.Draw(sb);
-            base.Draw(sb);
+            AddGameObject(new Ball(this, Vector2.One, ServiceLocator.Get<IScreenService>().Bounds));
         }
     }
 }
