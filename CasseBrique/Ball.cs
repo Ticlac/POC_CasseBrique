@@ -15,7 +15,7 @@ namespace CasseBrique
         public Ball()
         {
             this.texture = ServiceLocator.Get<IAssetService>().Get<Texture2D>("Ball");
-            this.position = ServiceLocator.Get<ScreenService>().center;
+            this.position = ServiceLocator.Get<IScreenService>().Center;
             this.color = Color.White;
         }
 

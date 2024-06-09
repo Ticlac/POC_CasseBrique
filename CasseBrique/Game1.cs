@@ -28,7 +28,7 @@ namespace CasseBrique
 
             ServiceLocator.Register<ContentManager>(Content);
             ServiceLocator.Register<GraphicsDeviceManager>(_graphics);
-            _assetService = new AssetService();
+            _assetService = new AssetService(Content);
             _screeService = new ScreenService(_graphics);
             _SceneManager = new ScenesManager();
 
