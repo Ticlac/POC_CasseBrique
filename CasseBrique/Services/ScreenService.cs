@@ -1,28 +1,33 @@
-﻿using Microsoft.Xna.Framework;
+﻿using CasseBrique.Services.Interfaces;
+using Microsoft.Xna.Framework;
 using System.Dynamic;
 
 namespace CasseBrique.Services
 {
-    public class ScreenService
+    public class ScreenService : IScreenService
     {
-        public ScreenService(int width, int height)
+        private GraphicsDeviceManager graphicsDeviceManager;
+        public ScreenService(GraphicsDeviceManager graphicsDeviceManager)
         {
-            ServiceLocator.Register<ScreenService>(this);
-            SetSize(width, height);
+            this.graphicsDeviceManager = graphicsDeviceManager;
+            ServiceLocator.Register<IScreenService>(this);
         }
 
-        public int width => ServiceLocator.Get<GraphicsDeviceManager>().PreferredBackBufferWidth;
-        public int height => ServiceLocator.Get<GraphicsDeviceManager>().PreferredBackBufferHeight;
-        public Vector2 topLeft => Vector2.Zero;
-        public Vector2 botRight => new Vector2(width, height);
-        public Vector2 center => botRight * .5f;
+        //Semi constantes ==> Possible de les setter
+        public int Width => this.graphicsDeviceManager.PreferredBackBufferWidth;
+        public int Height => this.graphicsDeviceManager.PreferredBackBufferHeight;
+        public int Top => 0;
+        public int Left => 0;
+        public Vector2 TopLeft => Vector2.Zero;
+        public Vector2 BotRight => new Vector2(Width, Height);
+        public Vector2 Center => BotRight * .5f;
+        public Rectangle Bounds => new Rectangle(Top, Left, Width, Height);
 
         public void SetSize(int width, int height)
         {
-            var graphics = ServiceLocator.Get<GraphicsDeviceManager>();
-            graphics.PreferredBackBufferWidth = width;
-            graphics.PreferredBackBufferHeight = height;
-            graphics.ApplyChanges();
+            this.graphicsDeviceManager.PreferredBackBufferWidth = width;
+            this.graphicsDeviceManager.PreferredBackBufferHeight = height;
+            this.graphicsDeviceManager.ApplyChanges();
         }
 
 

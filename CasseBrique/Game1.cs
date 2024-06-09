@@ -29,7 +29,7 @@ namespace CasseBrique
             ServiceLocator.Register<ContentManager>(Content);
             ServiceLocator.Register<GraphicsDeviceManager>(_graphics);
             _assetService = new AssetService();
-            _screeService = new ScreenService(1920, 1080);
+            _screeService = new ScreenService(_graphics);
             _SceneManager = new ScenesManager();
 
             //TODO : Key = Type + instantiation au chargement de la nouvelle scene 

@@ -13,6 +13,8 @@ namespace CasseBrique.Services
 
         public static void Register<T>(T service)
         {
+            if (_services.ContainsKey(typeof(T)))
+                throw new InvalidOperationException($"Service of type {typeof(T)} already registered");
             _services[typeof(T)] = service;
         }
 
