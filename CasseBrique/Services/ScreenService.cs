@@ -21,7 +21,7 @@ namespace CasseBrique.Services
         public Vector2 TopLeft => Vector2.Zero;
         public Vector2 BotRight => new Vector2(Width, Height);
         public Vector2 Center => BotRight * .5f;
-        public Rectangle Bounds => new Rectangle(Top, Left, Width, Height);
+        public Rectangle Bounds => new Rectangle(Left, Top, Width, Height);
 
         public void SetSize(int width, int height)
         {

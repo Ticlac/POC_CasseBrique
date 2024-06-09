@@ -45,7 +45,7 @@ namespace CasseBrique.GameObjects
 
         protected virtual void OnEnable() { }
         protected virtual void OnDisable() { }
-        protected virtual void Start() { }
+        public virtual void Start() { }
         public virtual void OnFree() { }
     }
 }
