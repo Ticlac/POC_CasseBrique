@@ -14,7 +14,7 @@ namespace CasseBrique.GameObjects
     public abstract class GameObject
     {
         private bool enable;
-        public bool isFree { get; private set; }
+        public bool isFree { get; set; }
         public Scene root { get; private set; }
         public bool Enable { 
             get { return enable;} 

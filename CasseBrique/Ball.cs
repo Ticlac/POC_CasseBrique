@@ -14,6 +14,7 @@ namespace CasseBrique
         private float speed;
         private Rectangle bounds;
         private float radius => texture.Width *.5f;
+        private int bounceCounter = 0;
 
         public Ball(Scene root, Vector2 direction, Rectangle bounds) : base(root)
         {
@@ -30,6 +31,7 @@ namespace CasseBrique
         {
             Move(dt);
             Bounce();
+            if (bounceCounter > 3) isFree = true;
         }
 
         //public override void Draw(SpriteBatch sb)
@@ -51,21 +53,25 @@ namespace CasseBrique
             {
                 position.X = bounds.Right - radius;
                 direction.X *= -1;
+                bounceCounter++;
             }
             else if(position.X < bounds.Left + radius)
             {
                 position.X = bounds.Left + radius;
                 direction.X *= -1;
+                bounceCounter++;
             }
             if (position.Y > bounds.Bottom - radius)
             {
                 position.Y = bounds.Bottom - radius;
                 direction.Y *= -1;
+                bounceCounter++;
             }
             else if (position.Y < bounds.Top + radius)
             {
                 position.Y = bounds.Top + radius;
                 direction.Y *= -1;
+                bounceCounter++;
             }
         }
 
