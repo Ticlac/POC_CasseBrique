@@ -4,7 +4,7 @@ using System.Dynamic;
 
 namespace CasseBrique.Services
 {
-    public class ScreenService : IScreenService
+    public sealed class ScreenService : IScreenService
     {
         private GraphicsDeviceManager graphicsDeviceManager;
         public ScreenService(GraphicsDeviceManager graphicsDeviceManager)

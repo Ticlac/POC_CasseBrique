@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace CasseBrique.Scenes
 {
-    public class ScenesManager : IScenesManager
+    public sealed class ScenesManager : IScenesManager
     {
         private Scene currentScene;
 

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CasseBrique.Services
 {
-    public class AssetService : IAssetService
+    public sealed class AssetService : IAssetService
     {
         Dictionary<string, object> _assets = new Dictionary<string, object>();
         private ContentManager contentManager;
