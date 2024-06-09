@@ -33,8 +33,8 @@ namespace CasseBrique
             _SceneManager = new ScenesManager();
 
             //TODO : Key = Type + instantiation au chargement de la nouvelle scene 
-            _SceneManager.RegisterScene("Game", new SceneGame());
-            _SceneManager.RegisterScene("Menu", new SceneMenu());
+            //_SceneManager.RegisterScene("Game", new SceneGame());
+            //_SceneManager.RegisterScene("Menu", new SceneMenu());
 
 
 
@@ -49,7 +49,7 @@ namespace CasseBrique
             _assetService.Load<Texture2D>("Ball");
 
             // Load de la premiere scene apres avoir charger toutes les textures.
-            _SceneManager.LoadScene("Game");
+            _SceneManager.LoadScene<SceneGame>();
         }
 
         protected override void Update(GameTime gameTime)

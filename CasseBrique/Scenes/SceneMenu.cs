@@ -16,7 +16,7 @@ namespace CasseBrique.Scenes
         {
             Debug.WriteLine("Update Scene Menu");
             if (Keyboard.GetState().IsKeyDown(Keys.Enter))
-                ServiceLocator.Get<IScenesManager>().LoadScene("Game");
+                ServiceLocator.Get<IScenesManager>().LoadScene<SceneGame>();
 
             base.Update(dt);
         }

@@ -8,6 +8,6 @@ namespace CasseBrique.Scenes.Interfaces
 {
     public interface IScenesManager
     {
-        public void LoadScene(string sceneName);
+        void LoadScene<T>() where T : Scene, new();
     }
 }

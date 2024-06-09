@@ -26,7 +26,7 @@ namespace CasseBrique.Scenes
             Debug.WriteLine("Update SceneGame");
 
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
-                ServiceLocator.Get<IScenesManager>().LoadScene("Menu");
+                ServiceLocator.Get<IScenesManager>().LoadScene<SceneMenu>();
 
             if (Keyboard.GetState().IsKeyDown(Keys.Space))
                 ball.Shoot(Vector2.One, 200f);
