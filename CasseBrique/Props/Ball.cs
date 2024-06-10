@@ -5,7 +5,7 @@ using CasseBrique.Services.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace CasseBrique
+namespace CasseBrique.Props
 {
     public class Ball : SpriteGameObject
     {
@@ -13,7 +13,7 @@ namespace CasseBrique
         private Vector2 direction;
         private float speed;
         private Rectangle bounds;
-        private float radius => texture.Width *.5f;
+        private float radius => texture.Width * .5f;
         private int bounceCounter = 0;
 
         public Ball(Scene root, Vector2 direction, Rectangle bounds) : base(root)
@@ -23,7 +23,7 @@ namespace CasseBrique
             offset = new Vector2(texture.Width * 0.5f, texture.Height * 0.5f);
             this.bounds = bounds;
             this.direction = direction;
-            this.speed = 400f;
+            speed = 400f;
 
         }
 
@@ -55,7 +55,7 @@ namespace CasseBrique
                 direction.X *= -1;
                 bounceCounter++;
             }
-            else if(position.X < bounds.Left + radius)
+            else if (position.X < bounds.Left + radius)
             {
                 position.X = bounds.Left + radius;
                 direction.X *= -1;
