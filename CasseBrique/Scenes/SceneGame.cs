@@ -1,4 +1,5 @@
 ﻿using CasseBrique.GameObjects;
+using CasseBrique.Props;
 using CasseBrique.Scenes.Interfaces;
 using CasseBrique.Services;
 using CasseBrique.Services.Interfaces;
@@ -20,7 +21,9 @@ namespace CasseBrique.Scenes
         public override void Load()
         {
             //AddGameObject(new Ball(this, Vector2.One, ServiceLocator.Get<IScreenService>().Bounds));
-            CreateBalls(100, ServiceLocator.Get<IScreenService>().Bounds);
+            //CreateBalls(100, ServiceLocator.Get<IScreenService>().Bounds);
+
+            AddGameObject(new Pad(this, ServiceLocator.Get<IScreenService>().Bounds));
         }
 
         private void CreateBalls(int amount, Rectangle bounds)
