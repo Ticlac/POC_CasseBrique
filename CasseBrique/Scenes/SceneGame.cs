@@ -24,6 +24,7 @@ namespace CasseBrique.Scenes
             //CreateBalls(100, ServiceLocator.Get<IScreenService>().Bounds);
 
             AddGameObject(new Pad(this, ServiceLocator.Get<IScreenService>().Bounds));
+            AddGameObject(new Ball(this, ServiceLocator.Get<IScreenService>().Bounds));
         }
 
         private void CreateBalls(int amount, Rectangle bounds)
@@ -34,7 +35,7 @@ namespace CasseBrique.Scenes
 
         private void CreateBall(Rectangle bounds)
         {
-            var ball = new Ball(this, getRandomDirection(), bounds);
+            var ball = new Ball(this, bounds);
             ball.position = getRandomPosition(bounds);
             AddGameObject(ball);
         }

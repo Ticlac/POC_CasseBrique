@@ -4,6 +4,9 @@ using CasseBrique.Services;
 using CasseBrique.Services.Interfaces;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using System;
+
 
 namespace CasseBrique.Props
 {
@@ -15,24 +18,40 @@ namespace CasseBrique.Props
         private Rectangle bounds;
         private float radius => texture.Width * .5f;
         private int bounceCounter = 0;
+        private bool sticked;
 
-        public Ball(Scene root, Vector2 direction, Rectangle bounds) : base(root)
+        public Ball(Scene root, Rectangle bounds) : base(root)
         {
             this.texture = ServiceLocator.Get<IAssetService>().Get<Texture2D>("Ball");
             this.position = ServiceLocator.Get<IScreenService>().Center;
             this.offset = new Vector2(texture.Width * 0.5f, texture.Height * 0.5f);
             this.bounds = bounds;
-            this.direction = direction;
-            this.speed = 400f;
+            this.speed = 1000f;
             this.velocity = Vector2.Zero;
-
+            this.sticked = true;
         }
 
         public override void Update(float dt)
         {
-            Move(dt);
-            BounceOnBounds();
-            OutOfBounds();
+
+            if (sticked)
+            {
+                var pad = root.GetGameObjects<Pad>()[0];
+                this.position = new Vector2(pad.position.X, pad.collider.Y - offset.Y - 10f);
+                if (Keyboard.GetState().IsKeyDown(Keys.Space))
+                {
+                    sticked = false;
+                    this.direction = new Vector2(1, -1);
+                }
+            }
+            else
+            {
+                Move(dt);
+                checkCollisionWithObjects<Pad>();
+
+                BounceOnBounds();
+                OutOfBounds();
+            }
         }
 
         //TODO : methode de collision generique avec d'autres spriteGameObjects : <T>
@@ -40,11 +59,13 @@ namespace CasseBrique.Props
         private void OutOfBounds()
         {
             //check si on est sous les limites de l'ecran
-            if (position.Y > bounds.Bottom - 100f)
+            if (position.Y > bounds.Bottom + 100f)
             {
                 // TODO :
                 // envoyer un message outOfBounds
-                // recoller la balle au pad
+                sticked = true;
+            }
+        }
 
         private void checkCollisionWithObjects<T>() where T : SpriteGameObject
         {
