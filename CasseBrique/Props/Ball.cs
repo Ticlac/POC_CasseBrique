@@ -31,15 +31,24 @@ namespace CasseBrique.Props
         public override void Update(float dt)
         {
             Move(dt);
-            Bounce();
+            BounceOnBounds();
+            OutOfBounds();
         }
 
-        //public override void Draw(SpriteBatch sb)
-        //{
-        //    sb.Draw(texture, position, null, color, rotation, offset, scale, SpriteEffects.None, 0);
-        //}
+        //TODO : methode de collision generique avec d'autres spriteGameObjects : <T>
 
-        public void Move(float dt)
+        private void OutOfBounds()
+        {
+            //check si on est sous les limites de l'ecran
+            if (position.Y > bounds.Bottom - 100f)
+            {
+                // TODO :
+                // envoyer un message outOfBounds
+                // recoller la balle au pad
+            }
+        }
+
+        private void Move(float dt)
         {
             //Remettre dans un cercle de rayon 1
             direction.Normalize();
@@ -47,26 +56,22 @@ namespace CasseBrique.Props
             position += velocity * dt;
         }
 
-        public void Bounce()
+        private void BounceOnBounds()
         {
-            if (position.X > bounds.Right - radius)
+            if (position.X > bounds.Right - offset.X)
             {
-                position.X = bounds.Right - radius;
+                position.X = bounds.Right - offset.X;
                 direction.X *= -1;
             }
-            else if (position.X < bounds.Left + radius)
+            else if (position.X < bounds.Left + offset.X)
             {
-                position.X = bounds.Left + radius;
+                position.X = bounds.Left + offset.X;
                 direction.X *= -1;
             }
-            if (position.Y > bounds.Bottom - radius)
+
+            if (position.Y < bounds.Top + offset.Y)
             {
-                position.Y = bounds.Bottom - radius;
-                direction.Y *= -1;
-            }
-            else if (position.Y < bounds.Top + radius)
-            {
-                position.Y = bounds.Top + radius;
+                position.Y = bounds.Top + offset.Y;
                 direction.Y *= -1;
             }
         }
