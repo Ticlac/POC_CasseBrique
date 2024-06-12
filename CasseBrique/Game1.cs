@@ -48,6 +48,7 @@ namespace CasseBrique
 
             _assetService.Load<Texture2D>("Ball");
             _assetService.Load<Texture2D>("paddleBlu");
+            _assetService.Load<Texture2D>("Brick");
 
             // Load de la premiere scene apres avoir charger toutes les textures.
             _SceneManager.LoadScene<SceneGame>();
