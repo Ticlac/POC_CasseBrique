@@ -25,6 +25,7 @@ namespace CasseBrique.Scenes
 
             AddGameObject(new Pad(this, ServiceLocator.Get<IScreenService>().Bounds));
             AddGameObject(new Ball(this, ServiceLocator.Get<IScreenService>().Bounds));
+            AddGameObject(new Brick(this, new Vector2(ServiceLocator.Get<IScreenService>().Width * 0.5f + 20, 10)));
         }
 
         private void CreateBalls(int amount, Rectangle bounds)

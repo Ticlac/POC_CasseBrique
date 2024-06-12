@@ -26,7 +26,7 @@ namespace CasseBrique.Props
             this.position = ServiceLocator.Get<IScreenService>().Center;
             this.offset = new Vector2(texture.Width * 0.5f, texture.Height * 0.5f);
             this.bounds = bounds;
-            this.speed = 1000f;
+            this.speed = 800f;
             this.velocity = Vector2.Zero;
             this.sticked = true;
         }
@@ -48,6 +48,7 @@ namespace CasseBrique.Props
             {
                 Move(dt);
                 checkCollisionWithObjects<Pad>();
+                checkCollisionWithObjects<Brick>();
 
                 BounceOnBounds();
                 OutOfBounds();
@@ -85,7 +86,7 @@ namespace CasseBrique.Props
                     {
                         if (this.collider.Right > obj.collider.Left && this.collider.Left < obj.collider.Right)
                         {
-                            this.position.X = obj.collider.Left - this.offset.X;
+                            this.position.X = obj.collider.Left + this.offset.X;
                             this.direction.X *= -1;
                         }
                         else if (this.collider.Left < obj.collider.Right && this.collider.Right > obj.collider.Left)
@@ -96,15 +97,14 @@ namespace CasseBrique.Props
                     }
                     else
                     {
-
                         if (this.collider.Bottom > obj.collider.Top && this.collider.Top < obj.collider.Bottom)
                         {
-                            this.position.Y = obj.collider.Top - this.offset.Y;
+                            this.position.Y = obj.collider.Bottom + this.offset.Y;
                             this.direction.Y *= -1;
                         }
                         else if (this.collider.Top < obj.collider.Bottom && this.collider.Bottom > obj.collider.Top)
                         {
-                            this.position.Y = obj.collider.Bottom - this.offset.Y;
+                            this.position.Y = obj.collider.Top - this.offset.Y;
                             this.direction.Y *= -1;
                         }
                     }
