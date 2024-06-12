@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -25,8 +26,44 @@ namespace CasseBrique.Scenes
 
             AddGameObject(new Pad(this, ServiceLocator.Get<IScreenService>().Bounds));
             AddGameObject(new Ball(this, ServiceLocator.Get<IScreenService>().Bounds));
-            AddGameObject(new Brick(this, new Vector2(ServiceLocator.Get<IScreenService>().Width * 0.5f + 20, 10)));
+            //AddGameObject(new Brick(this, new Vector2(ServiceLocator.Get<IScreenService>().Width * 0.5f + 20, 10)));
+            addBricks(ServiceLocator.Get<IScreenService>().Bounds);
+
         }
+
+
+        private void addBricks(Rectangle bounds)
+        {
+            int[,] bricksLevel = ServiceLocator.Get<GameController>().getBricksLevel();
+            var brickTexture = ServiceLocator.Get<IAssetService>().Get<Texture2D>("Brick");
+
+            int rows = bricksLevel.GetLength(0);
+            int columns = bricksLevel.GetLength(1);
+
+            float spaceBetweenBricks = 10f;
+            float verticalOffset = 10f;
+
+            float totalWidth = columns * (brickTexture.Width + spaceBetweenBricks) - spaceBetweenBricks;
+            //centrage
+            float offsetX = (bounds.Width - totalWidth) * 0.5f;
+
+            for (int row = 0; row < rows; row++)
+            {
+                for (int column = 0; column < columns; column++)
+                {
+                    if (Convert.ToInt16(bricksLevel[row, column]) == 0) continue; 
+
+                    float x = bounds.X + offsetX + column * (brickTexture.Width + spaceBetweenBricks);
+                    float y = bounds.Y + verticalOffset + row * (brickTexture.Height + spaceBetweenBricks);
+
+                    Brick brick = new Brick(this, new Vector2(x, y));
+
+                    AddGameObject(brick);
+                }
+
+            }
+        }
+
 
         private void CreateBalls(int amount, Rectangle bounds)
         {

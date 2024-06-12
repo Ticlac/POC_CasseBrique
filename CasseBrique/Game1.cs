@@ -26,6 +26,7 @@ namespace CasseBrique
         {
             // TODO: Add your initialization logic here
 
+            new GameController();
             ServiceLocator.Register<ContentManager>(Content);
             ServiceLocator.Register<GraphicsDeviceManager>(_graphics);
             _assetService = new AssetService(Content);
