@@ -85,22 +85,22 @@ namespace CasseBrique.Props
                     if (deathX < deathY)
                     {
                         // par la gauche
-                        if (this.collider.Right > obj.collider.Left)
+                        if (this.collider.Right > obj.collider.Left && this.collider.Left < obj.collider.Left)
                         {
-                            this.position.X = obj.collider.Left + this.offset.X;
+                            this.position.X = obj.collider.Left - this.offset.X;
                             this.direction.X *= -1;
                         }
                         //par la droite
-                        else if (this.collider.Left < obj.collider.Right)
+                        else if (this.collider.Left < obj.collider.Right && this.collider.Right > obj.collider.Right)
                         {
-                            this.position.X = obj.collider.Right - this.offset.X;
+                            this.position.X = obj.collider.Right + this.offset.X;
                             this.direction.X *= -1;
                         }
                     }
                     else
                     {
                         //collision par le haut
-                        if (this.collider.Bottom > obj.collider.Top && this.collider.Top > obj.collider.Top)
+                        if (this.collider.Bottom > obj.collider.Top && this.collider.Top < obj.collider.Top)
                         {
                             this.position.Y = obj.collider.Top - this.offset.Y;
                             this.direction.Y *= -1;
