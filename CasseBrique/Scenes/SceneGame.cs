@@ -67,9 +67,16 @@ namespace CasseBrique.Scenes
                     float x = bounds.X + offsetX + column * (brickTexture.Width + spaceBetweenBricks);
                     float y = bounds.Y + verticalOffset + row * (brickTexture.Height + spaceBetweenBricks);
 
-                    Brick brick = new Brick(this, new Vector2(x, y));
-
-                    AddGameObject(brick);
+                    if (Convert.ToInt16(bricksLevel[row, column]) == 1)
+                    {
+                        Brick brick = new Brick(this, new Vector2(x, y));
+                        AddGameObject(brick);
+                    }
+                    else if (Convert.ToInt16(bricksLevel[row, column]) == 2)
+                    {
+                        HardBrick brick = new HardBrick(this, new Vector2(x, y));
+                        AddGameObject(brick);
+                    }
                 }
 
             }

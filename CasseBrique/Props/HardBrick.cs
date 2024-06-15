@@ -12,24 +12,22 @@ using System.Threading.Tasks;
 
 namespace CasseBrique.Props
 {
-    public class Brick : SpriteGameObject
+    public class HardBrick : Brick
     {
-        protected int damageToBreak;
-        public Brick(Scene root, Vector2 position) : base(root, position)
+        public HardBrick(Scene root, Vector2 position) : base(root, position)
         {
-            this.texture = ServiceLocator.Get<IAssetService>().Get<Texture2D>("Brick");
-            this.damageToBreak = 1;
-            this.position = position;
+            this.texture = ServiceLocator.Get<IAssetService>().Get<Texture2D>("RedBrick");
+            this.damageToBreak = 2;
         }
 
-        public override void Update(float dt)
-        {
-
-        }
         public override void OnCollide(SpriteGameObject other)
         {
-            this.Enable = false;
-            this.isFree = true;
+            this.damageToBreak--;
+            if (this.damageToBreak <= 0)
+            {
+                this.Enable = false;
+                this.isFree = true;
+            }
         }
     }
 }

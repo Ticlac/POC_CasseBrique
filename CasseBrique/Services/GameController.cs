@@ -73,8 +73,16 @@ namespace CasseBrique.Services
 
             for (int row = 0; row < rows; row++)
                 for (int column = 0; column < columns; column++)
-                    brickLevelComposition[row, column] =  lines[row][column] == '1' ? 1 : 0;
-
+                    switch (lines[row][column])
+                    {
+                        case '1':
+                            brickLevelComposition[row, column] = 1;
+                            break;
+                        case '2':
+                            brickLevelComposition[row, column] = 2;
+                            break;
+                    }
+            
             return brickLevelComposition;
         }
 
