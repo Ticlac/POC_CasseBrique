@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CasseBrique.Scenes;
+using CasseBrique.Scenes.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -11,14 +13,46 @@ namespace CasseBrique.Services
     public class GameController
     {
         public int currentLevel { get; private set; } = 1;
-        public int maxLevel { get; private set; } = 3;
-        public int lifes { get; private set; } = 1;
+        public int maxLevel { get; private set; }
+        public int lifes { get; private set; } = 3;
         public GameController()
         {
             ServiceLocator.Register<GameController>(this);
+            maxLevel = CountLevel();
         }
 
+        private int CountLevel()
+        {
+            string dirpath = $"Levels";
+            if (Directory.Exists(dirpath))
+            {
+                string[] files = Directory.GetFiles(dirpath, "Level*.txt");
+                return files.Length;
+            }
+            else
+                throw new DirectoryNotFoundException($"Directory on {dirpath} not found");
+        }
 
+        public void TakeDamage()
+        {
+            lifes--;
+            if(lifes <= 0)
+            {
+                ServiceLocator.Get<IScenesManager>().LoadScene<SceneDefaite>();
+                ResetScene();
+            }
+        }
+        
+        private void ResetScene()
+        {
+            this.lifes = 3;
+            this.currentLevel = 1;
+        }
+
+        public void NextLevel()
+        {
+            currentLevel++;
+        }
         public int[,] getBricksLevel()
         {
             string filepath = $"Levels/level{currentLevel}.txt";

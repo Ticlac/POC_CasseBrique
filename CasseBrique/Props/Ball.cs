@@ -62,8 +62,7 @@ namespace CasseBrique.Props
             //check si on est sous les limites de l'ecran
             if (position.Y > bounds.Bottom + 100f)
             {
-                // TODO :
-                // envoyer un message outOfBounds
+                ServiceLocator.Get<GameController>().TakeDamage();
                 sticked = true;
             }
         }

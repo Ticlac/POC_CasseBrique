@@ -15,7 +15,7 @@ namespace CasseBrique.Scenes
 
         public virtual void Unload() { }
 
-        public void Update(float dt)
+        public virtual void Update(float dt)
         {
             foreach(var obj in gameObjects)
                 if (obj.Enable)

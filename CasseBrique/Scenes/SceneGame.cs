@@ -31,6 +31,17 @@ namespace CasseBrique.Scenes
 
         }
 
+        public override void Update(float dt)
+        {
+            int brickCount = GetGameObjects<Brick>().Count;
+            if(brickCount == 0)
+            {
+                ServiceLocator.Get<GameController>().NextLevel();
+                ServiceLocator.Get<IScenesManager>().LoadScene<SceneGame>();
+            }
+            base.Update(dt);
+        }
+
 
         private void addBricks(Rectangle bounds)
         {
