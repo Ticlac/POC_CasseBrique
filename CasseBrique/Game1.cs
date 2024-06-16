@@ -32,7 +32,7 @@ namespace CasseBrique
             _assetService = new AssetService(Content);
             _screeService = new ScreenService(_graphics);
             _SceneManager = new ScenesManager();
-            _screeService.SetSize(1920, 1080);
+            _screeService.SetSize(1080, 720);
             //TODO : Key = Type + instantiation au chargement de la nouvelle scene 
             //_SceneManager.RegisterScene("Game", new SceneGame());
             //_SceneManager.RegisterScene("Menu", new SceneMenu());
@@ -51,6 +51,9 @@ namespace CasseBrique
             _assetService.Load<Texture2D>("paddleBlu");
             _assetService.Load<Texture2D>("Brick");
             _assetService.Load<Texture2D>("RedBrick");
+            _assetService.Load<Texture2D>("RedBonus");
+            _assetService.Load<Texture2D>("laserGreen");
+            _assetService.Load<Texture2D>("laserRed");
 
             // Load de la premiere scene apres avoir charger toutes les textures.
             _SceneManager.LoadScene<SceneGame>();
