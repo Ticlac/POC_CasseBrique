@@ -55,6 +55,9 @@ namespace CasseBrique
             _assetService.Load<Texture2D>("laserGreen");
             _assetService.Load<Texture2D>("laserRed");
             _assetService.Load<Texture2D>("RectangleButton");
+            
+            
+            _assetService.Load<SpriteFont>("Font");
 
             // Load de la premiere scene apres avoir charger toutes les textures.
             _SceneManager.LoadScene<SceneMenu>();

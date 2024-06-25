@@ -37,6 +37,13 @@
 /processorParam:TextureFormat=Color
 /build:Brick.png
 
+#begin Font.spritefont
+/importer:FontDescriptionImporter
+/processor:FontDescriptionProcessor
+/processorParam:PremultiplyAlpha=True
+/processorParam:TextureFormat=Compressed
+/build:Font.spritefont
+
 #begin GreenBonus.png
 /importer:TextureImporter
 /processor:TextureProcessor

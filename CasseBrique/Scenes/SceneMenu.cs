@@ -2,6 +2,7 @@
 using CasseBrique.Scenes.Interfaces;
 using CasseBrique.Services;
 using CasseBrique.Services.Interfaces;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,8 @@ namespace CasseBrique.Scenes
     {
         public override void Load()
         {
-            AddGameObject(new Button(this, SceneType.GAME,"Start game", ServiceLocator.Get<IScreenService>().Center));
+            AddGameObject(new Button(this, SceneType.GAME, "Start game", ServiceLocator.Get<IScreenService>().Center));
+            AddGameObject(new Button(this, SceneType.EXIT, "Quit game", ServiceLocator.Get<IScreenService>().Center + new Vector2(0,100)));
         }
     }
 }

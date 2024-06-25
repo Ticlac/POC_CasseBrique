@@ -21,19 +21,26 @@ namespace CasseBrique.Props
         MENU,
         GAME,
         VICTORY,
-        OVER
+        OVER,
+        EXIT
     }
     public class Button : SpriteGameObject
     {
 
         private string text;
+        private Vector2 textPosition;
         private SceneType destScene;
+        private SpriteFont textFont;
         public Button(Scene root, SceneType destScene, string text, Vector2 position) : base(root, position)
         {
+            this.texture = ServiceLocator.Get<IAssetService>().Get<Texture2D>("RectangleButton");
+            this.textFont = ServiceLocator.Get<IAssetService>().Get<SpriteFont>("Font");
+            this.offset = new Vector2(this.texture.Width * 0.5f, this.texture.Height * 0.5f);
+
             this.position = position;
             this.destScene = destScene;
-            this.texture = ServiceLocator.Get<IAssetService>().Get<Texture2D>("RectangleButton");
             this.text = text;
+            this.textPosition = position - offset/2;
         }
 
         private void CheckOnClick()
@@ -64,13 +71,18 @@ namespace CasseBrique.Props
 
                     }
             }
-
         }
 
         public override void Update(float dt)
         {
             CheckOnClick();
             base.Update(dt);
+        }
+        public override void Draw(SpriteBatch sb)
+        {
+            base.Draw(sb);
+
+            sb.DrawString(this.textFont, this.text, this.textPosition, Color.Black);
         }
     }
 }
