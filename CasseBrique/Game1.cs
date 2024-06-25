@@ -54,9 +54,10 @@ namespace CasseBrique
             _assetService.Load<Texture2D>("RedBonus");
             _assetService.Load<Texture2D>("laserGreen");
             _assetService.Load<Texture2D>("laserRed");
+            _assetService.Load<Texture2D>("RectangleButton");
 
             // Load de la premiere scene apres avoir charger toutes les textures.
-            _SceneManager.LoadScene<SceneGame>();
+            _SceneManager.LoadScene<SceneMenu>();
         }
 
         protected override void Update(GameTime gameTime)
@@ -66,6 +67,7 @@ namespace CasseBrique
 
             float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
+            InputManager.Update();
             _SceneManager.Update(dt);
 
             base.Update(gameTime);

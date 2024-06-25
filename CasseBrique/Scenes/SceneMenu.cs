@@ -1,5 +1,7 @@
-﻿using CasseBrique.Scenes.Interfaces;
+﻿using CasseBrique.Props;
+using CasseBrique.Scenes.Interfaces;
 using CasseBrique.Services;
+using CasseBrique.Services.Interfaces;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
@@ -12,13 +14,9 @@ namespace CasseBrique.Scenes
 {
     public class SceneMenu : Scene
     {
-        //public override void Update(float dt)
-        //{
-        //    Debug.WriteLine("Update Scene Menu");
-        //    if (Keyboard.GetState().IsKeyDown(Keys.Enter))
-        //        ServiceLocator.Get<IScenesManager>().LoadScene<SceneGame>();
-
-        //    base.Update(dt);
-        //}
+        public override void Load()
+        {
+            AddGameObject(new Button(this, SceneType.GAME,"Start game", ServiceLocator.Get<IScreenService>().Center));
+        }
     }
 }
