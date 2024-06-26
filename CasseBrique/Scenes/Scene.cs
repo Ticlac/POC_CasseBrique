@@ -1,4 +1,5 @@
 ﻿using CasseBrique.GameObjects;
+using CasseBrique.Services;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -30,6 +31,8 @@ namespace CasseBrique.Scenes
                     gameObjects.RemoveAt(i);
                 }
             }
+
+            ServiceLocator.Get<GameController>().Replace(ref gameObjects);
 
         }
         public void Draw(SpriteBatch sb)

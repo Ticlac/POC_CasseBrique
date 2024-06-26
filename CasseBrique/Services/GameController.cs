@@ -1,4 +1,6 @@
-﻿using CasseBrique.Scenes;
+﻿using CasseBrique.GameObjects;
+using CasseBrique.Props;
+using CasseBrique.Scenes;
 using CasseBrique.Scenes.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -15,6 +17,8 @@ namespace CasseBrique.Services
         public int currentLevel { get; private set; } = 1;
         public int maxLevel { get; private set; }
         public int lifes { get; private set; } = 3;
+
+        public List<GameObject> replacement = new List<GameObject>();
         public GameController()
         {
             ServiceLocator.Register<GameController>(this);
@@ -52,6 +56,19 @@ namespace CasseBrique.Services
         public void NextLevel()
         {
             currentLevel++;
+        }
+
+        public void SetBonus(Bonus bonus)
+        {
+            replacement.Add(bonus);
+        }
+
+        public void Replace(ref List<GameObject> sceneGameObjects)
+        {
+            foreach (var item in replacement)
+            {
+                sceneGameObjects.Add(item);
+            }
         }
         public int[,] getBricksLevel()
         {

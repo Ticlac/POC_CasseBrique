@@ -27,6 +27,9 @@ namespace CasseBrique.Props
             {
                 this.Enable = false;
                 this.isFree = true;
+                Bonus bonus = new Bonus(root, this.position);
+
+                ServiceLocator.Get<GameController>().SetBonus(bonus);
             }
         }
     }
