@@ -65,10 +65,14 @@ namespace CasseBrique.Services
 
         public void Replace(ref List<GameObject> sceneGameObjects)
         {
+            if (replacement.Count == 0)
+                return;
             foreach (var item in replacement)
             {
                 sceneGameObjects.Add(item);
             }
+
+            replacement = new List<GameObject>();
         }
         public int[,] getBricksLevel()
         {

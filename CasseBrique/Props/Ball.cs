@@ -49,6 +49,7 @@ namespace CasseBrique.Props
                 Move(dt);
                 checkCollisionWithObjects<Pad>();
                 checkCollisionWithObjects<Brick>();
+                checkCollisionWithObjects<Bonus>();
 
                 BounceOnBounds();
                 OutOfBounds();

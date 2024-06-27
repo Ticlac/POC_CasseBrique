@@ -17,6 +17,7 @@ namespace CasseBrique.GameObjects
         public float rotation;
         public Vector2 scale;
         public Vector2 offset;
+        public bool passThrought;
 
         //Avantage => retourne le collider lors de la colision => Pas d'updates tout le temps
         public Rectangle collider

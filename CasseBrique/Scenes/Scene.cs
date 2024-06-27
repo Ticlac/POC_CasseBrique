@@ -32,7 +32,7 @@ namespace CasseBrique.Scenes
                 }
             }
 
-            ServiceLocator.Get<GameController>().Replace(ref gameObjects);
+            ServiceLocator.Get<GameController>().Replace(ref this.gameObjects);
 
         }
         public void Draw(SpriteBatch sb)
